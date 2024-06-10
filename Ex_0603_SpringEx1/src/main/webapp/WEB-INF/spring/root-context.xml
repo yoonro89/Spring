@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- 스피링빈을 통해 vo객체 생성 -->
+	<!-- 스프링빈을 통해 생성된 객체는 기본적으로 single-ton타입으로 생성 -->
+	
+	<!-- PersonVO p1 = new PersonVO() -->
+	<bean id="p1" class="vo.PersonVO">
+	
+	</bean>	
+	
+	<!-- setter를 통해 값을 세팅 
+		 setter injection(si) -->
+	<bean id="p2" class="vo.PersonVO">
+		<property name="name" value="홍길동"/>
+		<property name="age" value="20"></property>
+		<property name="tel" value="010-111-1111"></property>
+	</bean>
+	
+	<!-- 생성자(constructor) injection(ci)
+		 : 생성자로 값 세팅할 경우 constructor-arg로 VO에 있는 파라미터 순서대로 세팅한다 -->
+	<bean id="p3" class="vo.PersonVO">
+		<constructor-arg value="이길동"/>
+		<constructor-arg value="30"/>
+		<constructor-arg value="011-111-1111"/>
+	</bean>
+	
+</beans>
