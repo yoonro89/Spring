@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- BoardDao dao = new BoardDaoImpl() -->
+	<bean id="dao" class="dao.BoardDAOImpl"/>
+	
+	<!-- BoardService service - new BoardServiceImpl(dao) -->
+	<bean id="serviceBean" class="service.BoardServiceImpl">
+		<!-- DI(Dependency Injection : 의존성 주입)을 통해 이미 만들어 놓은 dao객체를 참조(reference) -->
+		<!-- <constructor-arg ref="dao"/> -->
+	
+		<property name="dao" ref="dao"/>
+		
+	</bean>	
+</beans>

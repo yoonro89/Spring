@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- @Component
+			└@Controller
+			└@Service
+			└@Repository -->
+	<!-- 패키지 이름만 명시해 주면 알아서 내부의 컴포넌트를 생성해주는 구조를 auto-detecting(자동생성)이라고 한다. -->
+	<!-- <context:component-scan base-package="com.kh.test_di, controller" /> -->
+	
+	<!-- injection을 통해 service를 받기위해 BoardController를 수동생성 
+		 **자동생성과 수동생성은 동시에 정의하면 오류발생. ※둘 중에 한가지만 사용해야 한다. -->
+	<beans:bean id="board_controller" class="controller.BoardController">
+		<beans:constructor-arg ref="serviceBean"/>
+	</beans:bean>
+	
+</beans:beans>

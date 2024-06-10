@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="d">
+	<select id="dept_list" resultType="vo.DeptVO">
+		select * from dept
+	</select>
+	
+	<!-- 새 부서 추가 -->
+	<insert id="dept_insert" parameterType="vo.DeptVO">
+		insert into DEPT values(#{deptno}, #{dname}, #{loc})
+	</insert>
+	
+	<!-- 부서 삭제 -->
+	<delete id="dept_delete" parameterType="int">
+		delete from DEPT where deptno=#{deptno}
+	</delete>
+	
+	<!-- 부서 수정 폼 : 수정할 value만 불러오기 -->
+	<select id="select_one" resultType="vo.DeptVO" parameterType="int">
+		select * from dept where deptno=#{deptno}
+	</select>
+	
+	<!-- 부서 정보 수정 -->
+	<update id="dept_update" parameterType="java.util.Map">
+		update DEPT 
+		set	deptno=#{c_deptno}, dname=#{vo.dname}, loc=#{vo.loc}
+		where deptno=#{vo.deptno}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

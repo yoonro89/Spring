@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- MySet ms = new MySet();	자바일 경우의 예
+		 ms.setSet( set ); -->
+	<bean id="ms" class="ex.MySet">
+		<property name="set">
+			<!-- new HashSet() -->
+			<set>
+				<!-- set.add("서울"); -->
+				<value>서울</value>
+				<value>대전</value>
+				<value>대구</value>
+			</set>
+		</property>
+	</bean>
+	
+	<!-- MyList ml = new MyList();
+		 ml.setList( list ) -->
+	<bean id="mList" class="ex.MyList">
+		<property name="list">
+			<list>
+				<value>사과</value>
+				<value>배</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- MyMap mm = new MyMap()
+		 mm.setMap( map ) -->
+	<bean id="mMap" class="ex.MyMap">
+		<property name="map">
+			<map>
+				<entry key="hong" value="1111"/>
+				<entry key="kim" value="2222"/>
+			</map>
+		</property>
+	</bean>
+</beans>
