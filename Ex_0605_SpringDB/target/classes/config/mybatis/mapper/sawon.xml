@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="s">
+	<select id="sawon_list" resultType="saVO">
+		select * from SAWON
+	</select>
+	
+	<!-- 추가 -->
+	<insert id="sawon_insert" parameterType="saVO">
+		insert into SAWON values(#{sabun}, #{saname}, #{sagen},
+								 #{deptno}, #{sajob}, #{sahire},
+								 #{samgr}, #{sapay})
+	</insert>
+	
+	<!-- 삭제 -->
+	<delete id="sawon_delete" parameterType="int">
+		delete from SAWON where sabun=#{sabun}
+	</delete>
+	
+	<!-- 수정 폼 : 수정할 value만 불러오기 -->
+	<select id="select_one" resultType="saVO" parameterType="int">
+		select * from SAWON where sawon=#{sawon}
+	</select>
+	
+	<!-- 찐 정보 수정 -->
+	<update id="sawon_update" parameterType="java.util.Map">
+		update SAWON 
+		set	sabun=#{m_sabun}, saname=#{vo.saname}, sagen=#{vo.sagen}, 
+			deptno=#{vo.deptno}, sajob=#{vo.sajob}, sahire=#{vo.sahire}, 
+			samgr=#{vo.samgr}, sapay=#{vo.sapay} 
+		where sabun=#{vo.sabun}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

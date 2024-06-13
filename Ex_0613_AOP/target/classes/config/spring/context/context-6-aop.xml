@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+	
+	<context:annotation-config/>
+	
+	<!-- Spring AOP(Aspect Oriented Programming) :
+			분산된 클래스들간의 중복적으로 존재하는 공통 관심사를 한곳으로 모아서 처리할 수 있도록 하는 기술 -->
+	
+	<!-- 공통 관심사가 구현된 Advice객체 -->
+	<bean id="advice" class="advice.Advice"/>
+	
+	<!-- AOP설정 : 원하는 모든 메서드에서 Advice에 구현된 공통기능을 사용 가능하도록 적용 -->
+	<aop:config>
+		<aop:pointcut expression="execution(public * com.kh.aop.service.*Service.*(..))" id="myPoint"/>
+		
+		<aop:aspect id="test" ref="advice">
+			<aop:before method="before" pointcut-ref="myPoint"/>
+			<aop:after method="after" pointcut-ref="myPoint"/>
+		</aop:aspect>
+	</aop:config>	
+</beans>
